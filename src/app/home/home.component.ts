@@ -15,18 +15,22 @@ export class HomeComponent implements OnInit {
 
   constructor(private _homeService: HomeService) { }
 
+  getAdminData() {
+    this._homeService.getLastData().subscribe(
+      data => {
+        this.adminData = data;
+        console.info("Admin Data");
+        console.log(this.adminData);
+      }
+    );
+  }
+
   activeDataTable() {
     $('#friendyCar').DataTable(); 
   }
 
   ngOnInit() {
-
-    this._homeService.getLastData().subscribe(
-      data => {
-        this.adminData = data;
-        console.log(this.adminData);
-      }
-    );
+    this.getAdminData();
 
     setTimeout(this.activeDataTable, 250);
     setTimeout(this.activeDataTable, 1000);
