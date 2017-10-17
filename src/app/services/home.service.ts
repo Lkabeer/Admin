@@ -9,7 +9,7 @@ export class HomeService {
   constructor(private _http: Http) { }
 
   getLastData() {
-    return this._http.get("https://jsonplaceholder.typicode.com/posts").map(res => res.json());
+    return this._http.get("https://jsonplaceholder.typicode.com/photos").map(res => res.json());
   }
 
 }

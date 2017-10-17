@@ -26,13 +26,35 @@ export class HomeComponent implements OnInit {
   }
 
   activeDataTable() {
-    $('#friendyCar').DataTable(); 
+    $('#friendyCar').DataTable(
+      {
+        "processing": true,
+        // "serverSide": true,
+        "ajax": "../../assets/data/objects.txt",
+        "dom": 'lBfrtip',
+        "buttons": [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],       
+        "columns": [
+            { "data": "name" },
+            { "data": "position" },
+            { "data": "office" },
+            { "data": "extn" },
+            { "data": "start_date" },
+            { "data": "salary" } 
+        ]
+      } 
+    );
   }
 
   ngOnInit() {
-    this.getAdminData();
+    // this.getAdminData();
 
-    setTimeout(this.activeDataTable, 250);
-    setTimeout(this.activeDataTable, 1000);
+    this.activeDataTable();
+    // setTimeout(this.activeDataTable, 250);
+    // setTimeout(this.activeDataTable, 1000);
   }
 }
