@@ -29,8 +29,14 @@ export class HomeComponent implements OnInit {
     var table = $('#friendyCar').DataTable(
       {
         "processing": true,
-        // "serverSide": true,
-        "ajax": "../../assets/data/objects.txt",
+        "serverSide": true,
+        "ajax": {
+          'url': "http://54.191.194.107/api/web/app_dev.php/api/cars-grid",
+          'type': 'GET',
+          'beforeSend': function (request) {
+              request.setRequestHeader("Authorization", 'Bearer ' + "ZWVjN2RlODE0OGQ3MTNmYTJjYTQwOTZjNTAyNmQ5N2ZiMTVlMjYyY2FmMWQ1Y2ZiMDQyNmZkMTVhNDFlMzE0OA");
+          }
+        },
         "dom": 'lBfrtip',
         "buttons": [
             'copyHtml5',
@@ -39,12 +45,13 @@ export class HomeComponent implements OnInit {
             'pdfHtml5'
         ],       
         "columns": [
-            { "data": "name" },
-            { "data": "position" },
-            { "data": "office" },
-            { "data": "extn" },
-            { "data": "start_date" },
-            { "data": "salary" } 
+          { "data": 0 },          // id
+          { "data": 1 },          //title
+          { "data": 2 },          //owner
+          { "data": 4 },          //phone
+          { "data": 5 },          //make
+          { "data": 6 },          //status
+          // { "data": 7 }           //created date
         ]
       } 
     );
